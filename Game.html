@@ -6,10 +6,19 @@
         canvas {
             border: 1px solid black;
         }
+
+        #currencyDisplay {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-family: Arial, sans-serif;
+            font-size: 18px;
+        }
     </style>
 </head>
 <body>
     <canvas id="gameCanvas" width="800" height="600"></canvas>
+    <div id="currencyDisplay">Blockies: 0</div>
 
     <script>
         // Get the canvas element
@@ -77,6 +86,10 @@
                 blockies.x = Math.random() * (canvas.width - block.width);
                 blockies.y = Math.random() * (canvas.height - block.height);
             }
+
+            // Update the currency display
+            var currencyDisplay = document.getElementById("currencyDisplay");
+            currencyDisplay.textContent = "Blockies: " + blockies.value;
 
             // Call update function again
             requestAnimationFrame(update);
