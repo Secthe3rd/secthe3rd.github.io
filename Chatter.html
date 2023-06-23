@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>The chatter</title>
+  <title>the chatter</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -127,7 +127,7 @@
         messageElement.classList.add('message');
 
         var profilePic = document.createElement('img');
-        profilePic.src = 'path/to/profile-pic.jpg';
+        profilePic.src = document.getElementById('profile-pic').src;
         profilePic.alt = 'Profile Picture';
         profilePic.classList.add('profile-pic');
         messageElement.appendChild(profilePic);
@@ -152,7 +152,21 @@
     }
 
     function saveSettings() {
-      // Code to save settings
+      var profilePic = document.getElementById('profile-pic');
+      var profilePicInput = document.getElementById('profile-pic-input');
+
+      // Update profile picture if a new one is selected
+      if (profilePicInput.files && profilePicInput.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(event) {
+          profilePic.src = event.target.result;
+          profilePic.style.display = 'block';
+        };
+        reader.readAsDataURL(profilePicInput.files[0]);
+      }
+
+      // Save other settings here
+
       settingsContainer.style.display = 'none';
     }
 
