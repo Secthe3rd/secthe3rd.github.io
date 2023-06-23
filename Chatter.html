@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Chat App</title>
+  <title>The chatter</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -39,6 +39,24 @@
       padding: 5px 10px;
       margin-top: 10px;
     }
+
+    #settings-button {
+      margin-top: 20px;
+    }
+
+    #settings-container {
+      display: none;
+      margin-top: 20px;
+    }
+
+    #username-input,
+    #profile-pic-input {
+      margin-bottom: 10px;
+    }
+
+    #save-button {
+      padding: 5px 10px;
+    }
   </style>
 </head>
 <body>
@@ -46,10 +64,26 @@
   <input type="text" id="message-input" placeholder="Type your message">
   <button id="send-button">Send</button>
 
+  <button id="settings-button">Settings</button>
+  <div id="settings-container">
+    <h2>Settings</h2>
+    <label for="username-input">Username:</label>
+    <input type="text" id="username-input">
+    <label for="profile-pic-input">Profile Picture:</label>
+    <input type="file" id="profile-pic-input">
+    <button id="save-button">Save</button>
+  </div>
+
   <script>
     var chatContainer = document.getElementById('chat-container');
     var messageInput = document.getElementById('message-input');
     var sendButton = document.getElementById('send-button');
+
+    var settingsButton = document.getElementById('settings-button');
+    var settingsContainer = document.getElementById('settings-container');
+    var usernameInput = document.getElementById('username-input');
+    var profilePicInput = document.getElementById('profile-pic-input');
+    var saveButton = document.getElementById('save-button');
 
     function sendMessage() {
       var message = messageInput.value.trim();
@@ -64,7 +98,7 @@
         messageElement.appendChild(profilePic);
 
         var username = document.createElement('span');
-        username.textContent = 'Your Username: ';
+        username.textContent = usernameInput.value + ': ';
         messageElement.appendChild(username);
 
         var messageText = document.createElement('span');
@@ -77,12 +111,24 @@
       }
     }
 
+    function openSettings() {
+      settingsContainer.style.display = 'block';
+    }
+
+    function saveSettings() {
+      // Code to save settings
+      settingsContainer.style.display = 'none';
+    }
+
     sendButton.addEventListener('click', sendMessage);
     messageInput.addEventListener('keyup', function(event) {
       if (event.keyCode === 13) {
         sendMessage();
       }
     });
+
+    settingsButton.addEventListener('click', openSettings);
+    saveButton.addEventListener('click', saveSettings);
   </script>
 </body>
 </html>
