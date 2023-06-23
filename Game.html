@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Blocky Game</title>
+    <title>Blockie the block</title>
     <style>
         /* Default light theme */
         body {
@@ -42,6 +42,18 @@
         #shopDisplay button {
             margin-top: 5px;
         }
+
+        #settingsDisplay {
+            position: absolute;
+            top: 50px;
+            left: 10px;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+        }
+
+        #settingsDisplay button {
+            margin-top: 5px;
+        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -52,15 +64,15 @@
     </div>
     <div id="shopDisplay">
         <p>Shop:</p>
-        <button onclick="purchaseBlock(1000)">Buy Block 1 (1000 Blockies)</button>
-        <button onclick="purchaseBlock(2000)">Buy Block 2 (2000 Blockies)</button>
-        <button onclick="purchaseBlock(3000)">Buy Block 3 (3000 Blockies)</button>
-        <button onclick="resetCoins()">Reset Coins</button>
-        <button onclick="resetMultiplier()">Reset Multiplier</button>
+        <button onclick="purchaseBlock(10, '#FF0000')">Buy Block 1 (10 Blockies)</button>
+        <button onclick="purchaseBlock(20, '#00FF00')">Buy Block 2 (20 Blockies)</button>
+        <button onclick="purchaseBlock(30, '#0000FF')">Buy Block 3 (30 Blockies)</button>
     </div>
     <div id="settingsDisplay">
         <p>Settings:</p>
         <button onclick="toggleTheme()">Toggle Theme</button>
+        <button onclick="resetCoins()">Reset Coins</button>
+        <button onclick="resetMultiplier()">Reset Multiplier</button>
     </div>
 
     <script>
@@ -93,11 +105,16 @@
             blockies.value = parseInt(localStorage.getItem("blockiesValue"));
         }
 
+        // Retrieve the theme preference from localStorage
+        if (localStorage.getItem("theme")) {
+            document.body.classList.add(localStorage.getItem("theme"));
+        }
+
         // Block types available in the shop
         var shopBlocks = [
-            { name: "Block 1", price: 1000, multiplier: 1.2 },
-            { name: "Block 2", price: 2000, multiplier: 1.2 },
-            { name: "Block 3", price: 3000, multiplier: 1.2 }
+            { name: "Block 1", price: 10, multiplier: 1.2 },
+            { name: "Block 2", price: 20, multiplier: 1.2 },
+            { name: "Block 3", price: 30, multiplier: 1.2 }
         ];
 
         // Function to draw the block on the canvas
@@ -161,7 +178,7 @@
         }
 
         // Function to handle purchasing a block from the shop
-        function purchaseBlock(price) {
+        function purchaseBlock(price, color) {
             if (blockies.value >= price) {
                 var currentMultiplier = 1.2; // Default multiplier
 
@@ -175,6 +192,9 @@
 
                 // Update the current multiplier in localStorage
                 localStorage.setItem("currentMultiplier", currentMultiplier.toString());
+
+                // Change the color of the block
+                block.color = color;
 
                 // Deduct the price from the currency value
                 blockies.value -= price;
@@ -211,6 +231,13 @@
         function toggleTheme() {
             var body = document.body;
             body.classList.toggle("dark");
+
+            // Store the theme preference in localStorage
+            if (body.classList.contains("dark")) {
+                localStorage.setItem("theme", "dark");
+            } else {
+                localStorage.setItem("theme", "light");
+            }
         }
 
         // Object to keep track of key states
