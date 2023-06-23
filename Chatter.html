@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Chat App with Settings</title>
+  <title>Chat App with Dark Theme and Settings</title>
   <style>
     body {
       font-family: Arial, sans-serif;
+      background-color: #222;
+      color: #fff;
     }
 
     #chat-container {
@@ -33,15 +35,58 @@
 
     #settings-container {
       display: none;
+      background-color: #333;
+      padding: 20px;
     }
 
-    #username-input,
-    #profile-pic-input {
+    #settings-container h2 {
+      color: #fff;
+      font-size: 24px;
+      margin-top: 0;
+    }
+
+    #settings-container input[type="text"],
+    #settings-container input[type="file"] {
+      background-color: #444;
+      color: #fff;
+      border: none;
+      padding: 5px;
       margin-bottom: 10px;
     }
 
-    #save-button {
+    #settings-container input[type="file"] {
+      padding-top: 10px;
+    }
+
+    #settings-container button {
       padding: 5px 10px;
+      background-color: #555;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+
+    #profile-pic {
+      display: none;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+
+    .message {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .message .profile-pic {
+      display: block;
+    }
+
+    .message .username {
+      font-weight: bold;
+      margin-right: 5px;
     }
   </style>
 </head>
@@ -72,38 +117,10 @@
     function sendMessage() {
       var message = messageInput.value.trim();
       if (message !== '') {
-        var messageElement = document.createElement('p');
-        messageElement.textContent = message;
-        chatContainer.appendChild(messageElement);
-        chatContainer.scrollTop = chatContainer.scrollHeight;
-        messageInput.value = '';
-      }
-    }
+        var messageElement = document.createElement('div');
+        messageElement.classList.add('message');
 
-    function openSettings() {
-      settingsContainer.style.display = 'block';
-    }
-
-    function saveSettings() {
-      var newUsername = usernameInput.value.trim();
-      // Code to save the new username in the database
-
-      // Code to save the new profile picture in the database
-
-      settingsContainer.style.display = 'none';
-      usernameInput.value = '';
-      profilePicInput.value = '';
-    }
-
-    sendButton.addEventListener('click', sendMessage);
-    messageInput.addEventListener('keyup', function(event) {
-      if (event.keyCode === 13) {
-        sendMessage();
-      }
-    });
-
-    settingsButton.addEventListener('click', openSettings);
-    saveButton.addEventListener('click', saveSettings);
-  </script>
-</body>
-</html>
+        var profilePic = document.createElement('img');
+        profilePic.src = 'path/to/profile-pic.jpg';
+        profilePic.alt = 'Profile Picture';
+       
