@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Blocky Game</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="gameCanvas" width="400" height="400"></canvas>
+
+    <script>
+        // Get the canvas element
+        var canvas = document.getElementById("gameCanvas");
+        var context = canvas.getContext("2d");
+
+        // Create the block object
+        var block = {
+            x: 50,
+            y: 50,
+            width: 50,
+            height: 50,
+            color: "#FF0000"
+        };
+
+        // Function to draw the block on the canvas
+        function drawBlock() {
+            context.fillStyle = block.color;
+            context.fillRect(block.x, block.y, block.width, block.height);
+        }
+
+        // Function to update the game state
+        function update() {
+            // Update the block position
+            block.x += 1;
+            block.y += 1;
+
+            // Clear the canvas
+            context.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Draw the block
+            drawBlock();
+
+            // Call update function again
+            requestAnimationFrame(update);
+        }
+
+        // Start the game loop
+        update();
+    </script>
+</body>
+</html>
