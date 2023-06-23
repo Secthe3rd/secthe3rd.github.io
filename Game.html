@@ -40,10 +40,11 @@
     </div>
     <div id="shopDisplay">
         <p>Shop:</p>
-        <button onclick="purchaseBlock(1000)">Buy Block 1 (1000 Blockies)</button>
-        <button onclick="purchaseBlock(2000)">Buy Block 2 (2000 Blockies)</button>
-        <button onclick="purchaseBlock(3000)">Buy Block 3 (3000 Blockies)</button>
+        <button onclick="purchaseBlock(10)">Buy Block 1 (10 Blockies)</button>
+        <button onclick="purchaseBlock(20)">Buy Block 2 (20 Blockies)</button>
+        <button onclick="purchaseBlock(30)">Buy Block 3 (30 Blockies)</button>
         <button onclick="resetCoins()">Reset Coins</button>
+        <button onclick="resetMultiplier()">Reset Multiplier</button>
     </div>
 
     <script>
@@ -58,7 +59,7 @@
             width: 50,
             height: 50,
             color: "#FF0000",
-            speed: 3
+            speed: 5
         };
 
         // Create the currency object
@@ -78,9 +79,9 @@
 
         // Block types available in the shop
         var shopBlocks = [
-            { name: "Block 1", price: 1000, multiplier: 1.2 },
-            { name: "Block 2", price: 2000, multiplier: 1.2 },
-            { name: "Block 3", price: 3000, multiplier: 1.2 }
+            { name: "Block 1", price: 10, multiplier: 1.2 },
+            { name: "Block 2", price: 20, multiplier: 1.2 },
+            { name: "Block 3", price: 30, multiplier: 1.2 }
         ];
 
         // Function to draw the block on the canvas
@@ -178,6 +179,15 @@
 
                 var currencyValue = document.getElementById("currencyValue");
                 currencyValue.textContent = blockies.value;
+            }
+        }
+
+        // Function to reset the multiplier
+        function resetMultiplier() {
+            var confirmReset = confirm("Are you sure you want to reset your multiplier? This can't be undone.");
+
+            if (confirmReset) {
+                localStorage.removeItem("currentMultiplier");
             }
         }
 
