@@ -9,7 +9,7 @@
     </style>
 </head>
 <body>
-    <canvas id="gameCanvas" width="400" height="400"></canvas>
+    <canvas id="gameCanvas" width="800" height="600"></canvas>
 
     <script>
         // Get the canvas element
@@ -22,7 +22,8 @@
             y: 50,
             width: 50,
             height: 50,
-            color: "#FF0000"
+            color: "#FF0000",
+            speed: 5
         };
 
         // Function to draw the block on the canvas
@@ -33,12 +34,22 @@
 
         // Function to update the game state
         function update() {
-            // Update the block position
-            block.x += 1;
-            block.y += 1;
-
             // Clear the canvas
             context.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Update the block position based on user input
+            if (keys.w && block.y > 0) {
+                block.y -= block.speed;
+            }
+            if (keys.a && block.x > 0) {
+                block.x -= block.speed;
+            }
+            if (keys.s && block.y < canvas.height - block.height) {
+                block.y += block.speed;
+            }
+            if (keys.d && block.x < canvas.width - block.width) {
+                block.x += block.speed;
+            }
 
             // Draw the block
             drawBlock();
@@ -46,6 +57,29 @@
             // Call update function again
             requestAnimationFrame(update);
         }
+
+        // Object to keep track of key states
+        var keys = {
+            w: false,
+            a: false,
+            s: false,
+            d: false
+        };
+
+        // Event listeners for keydown and keyup events
+        document.addEventListener("keydown", function(event) {
+            if (event.key === "w") keys.w = true;
+            if (event.key === "a") keys.a = true;
+            if (event.key === "s") keys.s = true;
+            if (event.key === "d") keys.d = true;
+        });
+
+        document.addEventListener("keyup", function(event) {
+            if (event.key === "w") keys.w = false;
+            if (event.key === "a") keys.a = false;
+            if (event.key === "s") keys.s = false;
+            if (event.key === "d") keys.d = false;
+        });
 
         // Start the game loop
         update();
