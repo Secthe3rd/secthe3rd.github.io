@@ -14,7 +14,7 @@
             font-family: Arial, sans-serif;
             font-size: 18px;
         }
-        
+
         #currencyDisplay i {
             margin-right: 5px;
         }
@@ -24,7 +24,7 @@
 <body>
     <canvas id="gameCanvas" width="800" height="600"></canvas>
     <div id="currencyDisplay">
-        <i class="fas fa-coins"></i> Blockies: 0
+        <i class="fas fa-coins"></i> Blockies: <span id="currencyValue">0</span>
     </div>
 
     <script>
@@ -51,6 +51,11 @@
             color: "#00FF00",
             value: 0
         };
+
+        // Retrieve the currency value from localStorage
+        if (localStorage.getItem("blockiesValue")) {
+            blockies.value = parseInt(localStorage.getItem("blockiesValue"));
+        }
 
         // Function to draw the block on the canvas
         function drawBlock() {
@@ -95,8 +100,11 @@
             }
 
             // Update the currency display
-            var currencyDisplay = document.getElementById("currencyDisplay");
-            currencyDisplay.innerHTML = `<i class="fas fa-coins"></i> Blockies: ${blockies.value}`;
+            var currencyValue = document.getElementById("currencyValue");
+            currencyValue.textContent = blockies.value;
+
+            // Store the currency value in localStorage
+            localStorage.setItem("blockiesValue", blockies.value.toString());
 
             // Call update function again
             requestAnimationFrame(update);
