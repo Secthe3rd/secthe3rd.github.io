@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Blockie the block</title>
+    <title>Blocky Game</title>
     <style>
         /* Default light theme */
         body {
@@ -46,9 +46,8 @@
 
         #settingsDisplay {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            bottom: 10px;
+            left: 10px;
             text-align: center;
             font-family: Arial, sans-serif;
             font-size: 16px;
@@ -61,7 +60,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <canvas id="gameCanvas" width="800" height="600"></canvas>
+    <canvas id="gameCanvas" width="800" height="800"></canvas>
     <div id="currencyDisplay">
         <i class="fas fa-coins"></i> Blockies: <span id="currencyValue">0</span>
     </div>
@@ -115,9 +114,9 @@
 
         // Block types available in the shop
         var shopBlocks = [
-            { name: "Block 1", price: 1000, multiplier: 1.2 },
-            { name: "Block 2", price: 2000, multiplier: 1.2 },
-            { name: "Block 3", price: 3000, multiplier: 1.2 }
+            { name: "Block 1", price: 10, multiplier: 1.2 },
+            { name: "Block 2", price: 20, multiplier: 1.2 },
+            { name: "Block 3", price: 30, multiplier: 1.2 }
         ];
 
         // Function to draw the block on the canvas
