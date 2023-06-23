@@ -73,7 +73,7 @@
 
             // Check collision between block and currency
             if (collides(block, blockies)) {
-                blockies.value++;
+                blockies.value += 5;
                 blockies.x = Math.random() * (canvas.width - block.width);
                 blockies.y = Math.random() * (canvas.height - block.height);
             }
