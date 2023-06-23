@@ -40,9 +40,10 @@
     </div>
     <div id="shopDisplay">
         <p>Shop:</p>
-        <button onclick="purchaseBlock(10)">Buy Block 1 (10 Blockies)</button>
-        <button onclick="purchaseBlock(20)">Buy Block 2 (20 Blockies)</button>
-        <button onclick="purchaseBlock(30)">Buy Block 3 (30 Blockies)</button>
+        <button onclick="purchaseBlock(1000)">Buy Block 1 (1000 Blockies)</button>
+        <button onclick="purchaseBlock(2000)">Buy Block 2 (2000 Blockies)</button>
+        <button onclick="purchaseBlock(3000)">Buy Block 3 (3000 Blockies)</button>
+        <button onclick="resetCoins()">Reset Coins</button>
     </div>
 
     <script>
@@ -57,7 +58,7 @@
             width: 50,
             height: 50,
             color: "#FF0000",
-            speed: 5
+            speed: 2,5
         };
 
         // Create the currency object
@@ -167,6 +168,19 @@
             }
         }
 
+        // Function to reset the coins
+        function resetCoins() {
+            var confirmReset = confirm("Are you sure you want to reset your coins? This can't be undone.");
+
+            if (confirmReset) {
+                blockies.value = 0;
+                localStorage.removeItem("blockiesValue");
+
+                var currencyValue = document.getElementById("currencyValue");
+                currencyValue.textContent = blockies.value;
+            }
+        }
+
         // Object to keep track of key states
         var keys = {
             w: false,
@@ -193,9 +207,9 @@
         // Function to check collision between two objects
         function collides(obj1, obj2) {
             return obj1.x < obj2.x + obj2.width &&
-                   obj1.x + obj1.width > obj2.x &&
-                   obj1.y < obj2.y + obj2.height &&
-                   obj1.y + obj1.height > obj2.y;
+                obj1.x + obj1.width > obj2.x &&
+                obj1.y < obj2.y + obj2.height &&
+                obj1.y + obj1.height > obj2.y;
         }
 
         // Start the game loop
