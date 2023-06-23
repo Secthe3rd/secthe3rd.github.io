@@ -18,18 +18,34 @@
 
         // Create the block object
         var block = {
-            x: 50,
-            y: 50,
+            x: 375,
+            y: 275,
             width: 50,
             height: 50,
             color: "#FF0000",
             speed: 5
         };
 
+        // Create the currency object
+        var blockies = {
+            x: Math.random() * (canvas.width - block.width),
+            y: Math.random() * (canvas.height - block.height),
+            width: 20,
+            height: 20,
+            color: "#00FF00",
+            value: 0
+        };
+
         // Function to draw the block on the canvas
         function drawBlock() {
             context.fillStyle = block.color;
             context.fillRect(block.x, block.y, block.width, block.height);
+        }
+
+        // Function to draw the currency object on the canvas
+        function drawBlockies() {
+            context.fillStyle = blockies.color;
+            context.fillRect(blockies.x, blockies.y, blockies.width, blockies.height);
         }
 
         // Function to update the game state
@@ -51,8 +67,16 @@
                 block.x += block.speed;
             }
 
-            // Draw the block
+            // Draw the block and the currency
             drawBlock();
+            drawBlockies();
+
+            // Check collision between block and currency
+            if (collides(block, blockies)) {
+                blockies.value++;
+                blockies.x = Math.random() * (canvas.width - block.width);
+                blockies.y = Math.random() * (canvas.height - block.height);
+            }
 
             // Call update function again
             requestAnimationFrame(update);
@@ -80,6 +104,14 @@
             if (event.key === "s") keys.s = false;
             if (event.key === "d") keys.d = false;
         });
+
+        // Function to check collision between two objects
+        function collides(obj1, obj2) {
+            return obj1.x < obj2.x + obj2.width &&
+                   obj1.x + obj1.width > obj2.x &&
+                   obj1.y < obj2.y + obj2.height &&
+                   obj1.y + obj1.height > obj2.y;
+        }
 
         // Start the game loop
         update();
