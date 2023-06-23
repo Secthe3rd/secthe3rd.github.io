@@ -1,61 +1,73 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>About me</title>
-  <style>
-    body {
-      background-color: #000;
-      color: #fff;
-      font-family: 'Arial', sans-serif;
-      text-align: center;
-    }
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial">
+    <link rel="icon" type="image/png" href="chief keef.png">
+    <title>About me</title>
+  </head>
+  <body>
+    <style>
+      body {
+        background-color: #000;
+        color: #fff;
+        font-family: 'Arial', sans-serif;
+        text-align: center;
+      }
+  
+      h1 {
+        font-size: 40px;
+        margin: 50px 0;
+        animation: glow 2s ease-in-out infinite alternate;
+      }
+  
+      @keyframes glow {
+        from { text-shadow: 0 0 10px #fff; }
+        to { text-shadow: 0 0 20px #fff, 0 0 30px #fff; }
+      }
+  
+      .animated-line {
+        width: 100%;
+        height: 2px;
+        background-color: #fff;
+        position: relative;
+        margin-bottom: 20px;
+        animation: slide-in 2s ease-in-out;
+      }
+  
+      @keyframes slide-in {
+        0% { width: 0; }
+        100% { width: 100%; }
+      }
+  
+      .animated-text {
+        display: block;
+        font-size: 24px;
+        position: relative;
+        animation: fade-in 2s ease-in-out;
+        margin-bottom: 20px;
+      }
+  
+      @keyframes fade-in {
+        0% { opacity: 0; }
+        100% { opacity: 1; }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>About Me</h1>
+    <div class="animated-line"></div>
+    <div class="animated-text">Name:Sec</div>
+    <div class="animated-text">Age:13</div>
+    <div class="animated-text">Hobby: I like to play video games, go outside and workout 💪</div>
+    <div class="animated-text">Discord : wsec. (not accepting friend requests)</div>
+   <div class="animated-text">If you have some questions feel free to dm me via Discord</div>
+  </body>
+  </html>
+<a href="https://discord.gg/TQgVBa2Pyv">
+   <button style="font-size:25px; background-color:grey; color:lightcoral; border-radius:25px; ">Join my discord server</button>
+  </a>
 
-    h1 {
-      font-size: 40px;
-      margin: 50px 0;
-      animation: glow 2s ease-in-out infinite alternate;
-    }
-
-    @keyframes glow {
-      from { text-shadow: 0 0 10px #fff; }
-      to { text-shadow: 0 0 20px #fff, 0 0 30px #fff; }
-    }
-
-    .animated-line {
-      width: 100%;
-      height: 2px;
-      background-color: #fff;
-      position: relative;
-      margin-bottom: 20px;
-      animation: slide-in 2s ease-in-out;
-    }
-
-    @keyframes slide-in {
-      0% { width: 0; }
-      100% { width: 100%; }
-    }
-
-    .animated-text {
-      display: block;
-      font-size: 24px;
-      position: relative;
-      animation: fade-in 2s ease-in-out;
-      margin-bottom: 20px;
-    }
-
-    @keyframes fade-in {
-      0% { opacity: 0; }
-      100% { opacity: 1; }
-    }
-  </style>
-</head>
-<body>
-  <h1>About Me</h1>
-  <div class="animated-line"></div>
-  <div class="animated-text">Name:Sec</div>
-  <div class="animated-text">Age:13</div>
-  <div class="animated-text">Hobby: I like to play video games, go outside and workout 💪</div>
-  <div class="animated-text">Discord : wsec. (not accepting friend requests)</div>
- <div class="animated-text">If you have some questions feel free to dm me via Discord</div>
-</body>
-</html>
+  </body>
+  </html>
