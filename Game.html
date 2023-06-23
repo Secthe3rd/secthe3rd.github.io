@@ -58,7 +58,7 @@
             width: 50,
             height: 50,
             color: "#FF0000",
-            speed: 2
+            speed: 3
         };
 
         // Create the currency object
@@ -78,9 +78,9 @@
 
         // Block types available in the shop
         var shopBlocks = [
-            { name: "Block 1", price: 10, multiplier: 1.5 },
-            { name: "Block 2", price: 20, multiplier: 1.5 },
-            { name: "Block 3", price: 30, multiplier: 1.5 }
+            { name: "Block 1", price: 1000, multiplier: 1.2 },
+            { name: "Block 2", price: 2000, multiplier: 1.2 },
+            { name: "Block 3", price: 3000, multiplier: 1.2 }
         ];
 
         // Function to draw the block on the canvas
@@ -146,15 +146,15 @@
         // Function to handle purchasing a block from the shop
         function purchaseBlock(price) {
             if (blockies.value >= price) {
-                var currentMultiplier = 1.5; // Default multiplier
+                var currentMultiplier = 1.2; // Default multiplier
 
                 // Check if the player has already purchased a block with a multiplier
                 if (localStorage.getItem("currentMultiplier")) {
                     currentMultiplier = parseFloat(localStorage.getItem("currentMultiplier"));
                 }
 
-                // Increase the multiplier by 1.5
-                currentMultiplier *= 1.5;
+                // Increase the multiplier by 1.2
+                currentMultiplier *= 1.2;
 
                 // Update the current multiplier in localStorage
                 localStorage.setItem("currentMultiplier", currentMultiplier.toString());
